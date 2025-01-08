@@ -8,12 +8,13 @@ WORKDIR /usr/src/app
 COPY . .
 
 # 切换 npm 源到阿里云源
-RUN npm config set registry https://registry.npm.taobao.org/
+RUN npm config set registry https://registry.npm.taobao.org/ 
+
+# 安装 pnpm，使用 npm install -g pnpm 时，可能因为网络问题或其他原因导致安装失败
+# 可以尝试使用 npx pnpm@latest add --global pnpm 来安装 pnpm，这样可以确保使用最新版本的 pnpm
+RUN npx pnpm@latest add --global pnpm
 
 # 安装依赖
-
-RUN npm install -g pnpm --unsafe-perm=true --verbose
-
 RUN pnpm install --verbose
 
 # 执行 Vite 构建命令，生成 dist 目录
