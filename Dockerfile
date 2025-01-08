@@ -1,5 +1,5 @@
 # 使用官方的 Node 镜像作为基础镜像
-FROM docker.feisudu.com/node:20.12.2
+FROM docker.jintiku.com/node:20.12.2
 
 # 设置工作目录
 WORKDIR /usr/src/app
@@ -17,7 +17,7 @@ RUN pnpm install
 RUN pnpm build
 
 # 使用 Nginx 镜像作为运行时镜像
-FROM docker.feisudu.com/nginx:1.26
+FROM docker.jintiku.com/nginx:1.26
 
 # 修改nginx配置
 # 向 #error_page 前添加内容
