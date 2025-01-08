@@ -12,9 +12,9 @@ RUN npm config set registry https://registry.npm.taobao.org/
 
 # 安装依赖
 
-RUN npm install pnpm -g --verbose
+RUN npm install pnpm -g --verbose --progress=plain
 
-RUN pnpm install --verbose
+RUN pnpm install --verbose --progress=plain
 
 # 执行 Vite 构建命令，生成 dist 目录
 RUN pnpm build
