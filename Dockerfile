@@ -4,6 +4,8 @@ FROM docker.jintiku.com/node:20.12.2
 # 设置工作目录
 WORKDIR /usr/src/app
 
+ENV NODE_TLS_REJECT_UNAUTHORIZED=0
+
 # 将本地的 Vite 项目文件复制到工作目录
 COPY . .
 
