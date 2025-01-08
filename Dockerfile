@@ -9,9 +9,9 @@ COPY . .
 
 # 安装依赖
 
-RUN npm install pnpm -g
+RUN npm install pnpm -g --verbose
 
-RUN pnpm install
+RUN pnpm install --verbose
 
 # 执行 Vite 构建命令，生成 dist 目录
 RUN pnpm build
