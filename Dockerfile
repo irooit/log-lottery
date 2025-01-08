@@ -12,7 +12,7 @@ RUN npm config set registry https://registry.npm.taobao.org/
 
 # 安装依赖
 
-RUN npm install pnpm -g --verbose
+RUN npm install -g pnpm --unsafe-perm=true --verbose
 
 RUN pnpm install --verbose
 
