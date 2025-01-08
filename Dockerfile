@@ -4,32 +4,16 @@ FROM docker.jintiku.com/node:20.12.2
 # 设置工作目录
 WORKDIR /usr/src/app
 
-ENV NODE_TLS_REJECT_UNAUTHORIZED=0
-
-
-# 切换 npm 源到阿里云源
-RUN npm config set registry https://registry.npm.taobao.org/ 
-
-# 切换到根用户（如果当前不是）
-USER root
-
-# 更新并清理 APT 缓存（仅适用于基于 Debian/Ubuntu 的镜像）
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-        # 安装其他必要的系统级依赖（如果有）
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-
-# 使用官方提供的安装脚本来安装 pnpm
-RUN curl -fsSL https://get.pnpm.io/install.sh | sh -
-
-# 确认 pnpm 已正确安装
-RUN pnpm --version
-
-# 复制应用代码到容器
+# 将本地的 Vite 项目文件复制到工作目录
 COPY . .
 
+# 切换 npm 源到阿里云源
+RUN npm config set registry https://registry.npm.taobao.org/
+
 # 安装依赖
+
+RUN npm install -g pnpm --unsafe-perm=true --verbose
+
 RUN pnpm install --verbose
 
 # 执行 Vite 构建命令，生成 dist 目录
