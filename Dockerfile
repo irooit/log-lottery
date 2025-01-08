@@ -7,6 +7,9 @@ WORKDIR /usr/src/app
 # 将本地的 Vite 项目文件复制到工作目录
 COPY . .
 
+# 切换 npm 源到阿里云源
+RUN npm config set registry https://registry.npm.taobao.org/
+
 # 安装依赖
 
 RUN npm install pnpm -g --verbose
